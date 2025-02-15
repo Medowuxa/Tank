@@ -13,7 +13,7 @@ private const val BULLET_HEIGHT = 15
 
 class BulletDrawer(val container: FrameLayout) {
 
-    fun drawBullet(myTank:View, currentDirection: Direction){
+    fun createBullet(myTank:View, currentDirection: Direction){
         val bullet = ImageView(container.context)
             .apply {
                 this.setImageResource(R.drawable.bullet)

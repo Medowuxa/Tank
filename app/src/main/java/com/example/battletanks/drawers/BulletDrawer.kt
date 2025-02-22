@@ -8,6 +8,7 @@ import com.example.battletanks.CELL_SIZE
 import com.example.battletanks.R
 import com.example.battletanks.enums.Direction
 import com.example.battletanks.models.Coordinate
+import com.example.battletanks.utils.checkViewCanMoveThrounghBorder
 
 private const val BULLET_WIDTH = 15
 private const val BULLET_HEIGHT = 15
@@ -17,7 +18,7 @@ class BulletDrawer(val container: FrameLayout) {
     fun makeBulletMove(myTank: View,currentDirection: Direction){
         Thread(Runnable {
             val bullet = createBullet(myTank, currentDirection)
-            while (true){
+            while (bullet.checkViewCanMoveThrounghBorder(Coordinate(bullet.top, bullet.left))){
                 when (currentDirection){
                     Direction.UP -> (bullet.layoutParams as FrameLayout.LayoutParams).topMargin -= BULLET_HEIGHT
                     Direction.DOWN -> (bullet.layoutParams as FrameLayout.LayoutParams).topMargin += BULLET_HEIGHT
@@ -29,6 +30,9 @@ class BulletDrawer(val container: FrameLayout) {
                     container.removeView(bullet)
                     container.addView(bullet)
                 }
+            }
+            (container.context as Activity).runOnUiThread {
+                container.removeView(bullet)
             }
         }).start()
     }

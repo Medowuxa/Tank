@@ -34,7 +34,7 @@ class ElementsDrawer(val container: FrameLayout) {
     private fun drawOrReplaceView(coordinate: Coordinate){
         val viewOnCoordinate = getElementByCoordinates(coordinate, elementsOnContainer)
         if (viewOnCoordinate == null){
-            drawView(coordinate)
+            selectMaterial(coordinate)
             return
         }
         if (viewOnCoordinate.material !=currentMaterial) {
@@ -42,9 +42,19 @@ class ElementsDrawer(val container: FrameLayout) {
         }
     }
 
+    fun drawElementsList(elements: List<Element>?){
+        if (elements == null){
+            return
+        }
+        for (element in elements){
+            currentMaterial = element.material
+            selectMaterial((element.coordinate))
+        }
+    }
+
     private fun replaceView(coordinate: Coordinate){
         eraseView(coordinate)
-        drawView(coordinate)
+        selectMaterial(coordinate)
     }
 
     private fun eraseView(coordinate: Coordinate){

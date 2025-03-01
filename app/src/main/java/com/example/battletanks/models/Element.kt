@@ -1,9 +1,10 @@
 package com.example.battletanks.models
 
+import android.view.View
 import com.example.battletanks.enums.Material
 
-class Element(
-    val viewId: Int,
+data class Element constructor(
+    val viewId: Int = View.generateViewId(),
     val material: Material,
     val coordinate: Coordinate,
     val width: Int,

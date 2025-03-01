@@ -1,5 +1,6 @@
 package com.example.battletanks.enums
 
+import com.example.battletanks.CELL_SIZE
 import com.example.battletanks.R
 import com.google.android.material.transition.MaterialFadeThrough
 
@@ -7,12 +8,13 @@ import com.google.android.material.transition.MaterialFadeThrough
 const val CELLS_SIMPLE_ELEMENT = 1
 const val CELLS_EAGLE_WIDTH = 4
 const val CELLS_EAGLE_HEIGHT = 3
+const val CELLS_TANKS_SIZE = 2
 
 enum class Material(
     val tankConGoThrough: Boolean,
     val bulletCanGoThrough: Boolean,
     val simpleBulletCanDestroy: Boolean,
-    val canExistOnlyOne: Boolean,
+    val elementsAmountOnScreen: Int,
     val width: Int,
     val height: Int,
     val image: Int
@@ -21,7 +23,7 @@ enum class Material(
         true,
         true,
         true,
-        false,
+        0,
         0,
         0,
         0),
@@ -29,7 +31,7 @@ enum class Material(
         false,
         false,
         true,
-        false,
+        0,
         CELLS_SIMPLE_ELEMENT,
         CELLS_SIMPLE_ELEMENT,
         R.drawable.brick),
@@ -37,7 +39,7 @@ enum class Material(
         false,
         false,
         false,
-        false,
+        0,
         CELLS_SIMPLE_ELEMENT,
         CELLS_SIMPLE_ELEMENT,
         R.drawable.concrete),
@@ -45,7 +47,7 @@ enum class Material(
         true,
         true,
         false,
-        false,
+        0,
         CELLS_SIMPLE_ELEMENT,
         CELLS_SIMPLE_ELEMENT,
         R.drawable.grass),
@@ -53,8 +55,26 @@ enum class Material(
         false,
         false,
         true,
+        1,
+        CELLS_SIMPLE_ELEMENT,
+        CELLS_SIMPLE_ELEMENT,
+        R.drawable.eagle),
+    ENEMY_TANK_RESPAWN(
+     false,
+     false,
+     true,
+     3,
+     CELLS_TANKS_SIZE,
+        CELLS_TANKS_SIZE,
+        R.drawable.enemy_tank
+    ),
+    PLAYER_TANK_RESPAWN (
+        false,
+        false,
         true,
-        CELLS_SIMPLE_ELEMENT,
-        CELLS_SIMPLE_ELEMENT,
-        R.drawable.eagle)
+        1,
+        CELLS_TANKS_SIZE,
+        CELLS_TANKS_SIZE,
+        R.drawable.tank
+            ),
 }

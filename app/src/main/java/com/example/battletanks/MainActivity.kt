@@ -12,10 +12,7 @@ import com.example.battletanks.enums.Direction.DOWN
 import com.example.battletanks.enums.Direction.LEFT
 import com.example.battletanks.enums.Direction.RIGHT
 import com.example.battletanks.databinding.ActivityMainBinding
-import com.example.battletanks.drawers.BulletDrawer
-import com.example.battletanks.drawers.ElementsDrawer
-import com.example.battletanks.drawers.GridDrawer
-import com.example.battletanks.drawers.TankDrawer
+import com.example.battletanks.drawers.*
 import com.example.battletanks.enums.Material
 
 const val CELL_SIZE = 50
@@ -43,6 +40,9 @@ class MainActivity : AppCompatActivity() {
     private val levelStorage by lazy{
         LevelStorage(this)
     }
+    private val EnemyDrawer by lazy {
+        EnemyDrawer(binding.container)
+}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,12 +58,6 @@ class MainActivity : AppCompatActivity() {
         }
         binding.editorGrass.setOnClickListener { elementsDrawer.currentMaterial = Material.GRASS }
         binding.editorEagle.setOnClickListener { elementsDrawer.currentMaterial = Material.EAGLE }
-        binding.editorEnemyRespawn.setOnClickListener {
-            elementsDrawer.currentMaterial = Material.ENEMY_TANK_RESPAWN
-        }
-        binding.editorPlayerRespawn.setOnClickListener{
-            elementsDrawer.currentMaterial = Material.PLAYER_TANK_RESPAWN
-        }
         binding.container.setOnTouchListener { _, event ->
             elementsDrawer.onTouchContainer(event.x, event.y)
             return@setOnTouchListener true
@@ -83,12 +77,10 @@ class MainActivity : AppCompatActivity() {
     private fun showSettings() {
         gridDrawer.drawGrid()
         binding.materialContainer.visibility = VISIBLE
-        elementsDrawer.changeElementsVisibility(true)
     }
     private fun hideSettings(){
         gridDrawer.removeGrid()
         binding.materialContainer.visibility = GONE
-        elementsDrawer.changeElementsVisibility(false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

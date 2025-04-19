@@ -17,7 +17,7 @@ enum class Material(
     val elementsAmountOnScreen: Int,
     val width: Int,
     val height: Int,
-    val image: Int
+    val image: Int?
 
 
 ) {
@@ -28,7 +28,7 @@ enum class Material(
         0,
         0,
         0,
-        0
+        null
 
     ),
 
@@ -69,22 +69,13 @@ enum class Material(
         CELLS_SIMPLE_ELEMENT,
         R.drawable.eagle
     ),
-    ENEMY_TANK_RESPAWN(
+    ENEMY_TANK(
+     false,
+     false,
      true,
-     true,
-     true,
-     3,
+     0,
      CELLS_TANKS_SIZE,
         CELLS_TANKS_SIZE,
         R.drawable.enemy_tank
-    ),
-    PLAYER_TANK_RESPAWN (
-        true,
-        true,
-        false,
-        1,
-        CELLS_TANKS_SIZE,
-        CELLS_TANKS_SIZE,
-        R.drawable.tank
-            ),
+    )
 }

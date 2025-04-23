@@ -45,8 +45,13 @@ fun Element.drawElement(container: FrameLayout){
     view.id = this.viewId
     view.layoutParams = layoutParams
     view.scaleType = ImageView.ScaleType.FIT_XY
-    (container.context as Activity).runOnUiThread {
+    container.runOnUniThread {
         container.addView(view)
     }
 
+}
+fun FrameLayout.runOnUniThread(block: () -> Unit){
+    (this.context as Activity).runOnUiThread {
+        block()
+    }
 }

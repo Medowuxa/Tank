@@ -118,9 +118,7 @@ class BulletDrawer(val container: FrameLayout) {
         val activity = container.context as Activity
         activity.runOnUiThread {
 
-            if (element != null) {
                 container.removeView(activity.findViewById(element!!.viewId))
-            }
         }
     }
 
